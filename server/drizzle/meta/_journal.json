@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1752872278441,
+      "tag": "0000_outgoing_eternity",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1752873059632,
+      "tag": "0001_lyrical_thunderbolt_ross",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1752925080650,
+      "tag": "0002_jazzy_squadron_supreme",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1753050259755,
+      "tag": "0003_robust_speed_demon",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1753269764967,
+      "tag": "0004_flimsy_trauma",
+      "breakpoints": true
+    }
+  ]
+}
