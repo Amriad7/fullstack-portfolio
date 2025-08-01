@@ -3,6 +3,7 @@ import cors from "cors";
 import express, { Request, Response } from "express";
 import settingsRoutes from "./routes/settingsRoutes";
 import messagesRoutes from "./routes/messagesRoutes";
+import mediaRoutes from "./routes/mediaRoutes";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./utils/auth";
 
@@ -31,5 +32,6 @@ app.get("/", (_req: Request, res: Response) => {
 /* Routes */
 app.use("/api/settings", settingsRoutes);
 app.use("/api/messages", messagesRoutes);
+app.use("/api/media", mediaRoutes);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));

@@ -5,6 +5,8 @@ import {
   text,
   timestamp,
   boolean,
+  int,
+  float,
 } from "drizzle-orm/mysql-core";
 
 export const user = mysqlTable("user", {
@@ -91,6 +93,25 @@ export const messages = mysqlTable("messages", {
     .$onUpdateFn(() => new Date())
     .notNull(),
   userId: varchar("user_id", { length: 36 }).references(() => user.id),
+});
+
+export const media = mysqlTable("media", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  type: varchar("type", { length: 36 }).notNull(),
+  format: varchar("format", { length: 4 }).notNull(),
+  url: text("url").notNull(),
+  name: text("name").notNull(),
+  description: text("description"),
+  size: float("size").notNull(),
+  height: int("height"),
+  width: int("width"),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .$onUpdateFn(() => new Date())
+    .notNull(),
 });
 
 export const authSchema = { user, account, session, verification };
