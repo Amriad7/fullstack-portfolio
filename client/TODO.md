@@ -28,23 +28,20 @@
 [x] protected client routes
 [x] Oauth signup/signIn
 [x] Protect api routes
-
-# BEFORE NEXT WEEK:
-
-- A Working contact form
-  [x] DB schema
-  [x] Messages endpoints
-  [x] Contact Form
-  [x] Messages Table
-  [x] Message Delete
-  [x] Message View
-  [x] Message Mark read
-  [x] Message Card
-  [ ] Sort Functionality
-  [ ] Api Pagination?
-
-- Social buttons links
-
-* Style sonner
-* Style user menu
-* Add some animations
+[x] DB schema
+[x] Messages endpoints
+[x] Contact Form
+[x] Messages Table
+[x] Message Delete
+[x] Message View
+[x] Message Mark read
+[x] Message Card
+[ ] Sort Functionality
+[ ] Api Pagination?
+[ ] Social buttons links
+[ ] Style sonner
+[ ] Style user menu
+[ ] upload image form
+[ ] images table
+[ ] image update
+[ ] image delete
