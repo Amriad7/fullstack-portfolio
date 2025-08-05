@@ -96,8 +96,8 @@ export const messages = mysqlTable("messages", {
 });
 
 export const media = mysqlTable("media", {
-  id: varchar("id", { length: 36 }).primaryKey(),
-  type: varchar("type", { length: 36 }).notNull(),
+  id: varchar("id", { length: 36 }).primaryKey().$defaultFn(randomUUID),
+  publicId: text("public_id").notNull(),
   format: varchar("format", { length: 4 }).notNull(),
   url: text("url").notNull(),
   name: text("name").notNull(),
