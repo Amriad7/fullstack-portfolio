@@ -1,11 +1,9 @@
 import { api } from "~/lib/api";
 import type { Route } from "./+types/messages";
 import {
-  columns,
   MessagesTable,
   type Message,
 } from "~/components/tables/messages-table";
-import { H3 } from "~/components/ui/typography";
 import { toast } from "sonner";
 import { useRevalidator } from "react-router";
 import { useRef, useState } from "react";
@@ -47,8 +45,8 @@ const Messages = ({ loaderData }: Route.ComponentProps) => {
         toast.success(res.data.message);
         revalidate();
       })
-      .catch((error) => {
-        toast.error("Couldnt delete this message");
+      .catch((err) => {
+        toast.error(err.response.data.message || "Something went wrong");
       });
   };
 
@@ -83,7 +81,7 @@ const Messages = ({ loaderData }: Route.ComponentProps) => {
         </Button>
       </div>
       <div className="container mx-auto py-5">
-        <MessagesTable columns={columns} data={messages} />
+        <MessagesTable data={messages} />
       </div>
     </div>
   );
