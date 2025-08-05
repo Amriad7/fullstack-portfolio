@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
+  DialogFooter,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 import z from "zod";
@@ -22,6 +23,11 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import FileUpload from "./file-upload";
 import { api } from "~/lib/api";
+import { toast } from "sonner";
+import type { AxiosError } from "axios";
+import { useRef } from "react";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { Upload } from "lucide-react";
 
 const MAX_IMG_SIZE = 1024 * 1024; // 1Mb
 
@@ -34,6 +40,8 @@ const formSchema = z.object({
 });
 
 const ImageUploadDialog = () => {
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,17 +58,28 @@ const ImageUploadDialog = () => {
     formData.append("name", values.name);
     formData.append("description", values.description);
 
-    api.post("/media", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    await api
+      .post("/media", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        closeBtnRef.current?.click();
+        form.reset();
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message || "Something went wrong!");
+      });
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Upload Image</Button>
+        <Button>
+          <Upload /> Upload Image
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -131,7 +150,12 @@ const ImageUploadDialog = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Upload</Button>
+                <DialogFooter>
+                  <Button type="submit">Upload</Button>
+                  <DialogClose asChild ref={closeBtnRef}>
+                    <Button variant={"outline"}>Close</Button>
+                  </DialogClose>
+                </DialogFooter>
               </div>
             </form>
           </Form>
